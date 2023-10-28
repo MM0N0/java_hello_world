@@ -6,6 +6,8 @@ on:
 jobs:
   trigger_patch_release:
     runs-on: ubuntu-latest
+    env:
+      NO_TTY: "1"
     steps:
       - uses: actions/checkout@v3
         with:
