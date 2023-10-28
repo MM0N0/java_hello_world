@@ -1,0 +1,18 @@
+name: Build Snapshot Version
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build with Gradle
+        run: .docker/dev_docker.sh gradle jar
+
+      - name: Deploy Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: HelloWorld-Snapshot
+          path: build/libs/*.jar

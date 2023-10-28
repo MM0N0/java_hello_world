@@ -1,0 +1,32 @@
+name: Build Release
+on:
+  push:
+    branches:
+      - release/*
+jobs:
+  build:
+    if: "startsWith(github.event.head_commit.message, 'Release')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build with Gradle
+        run: .docker/dev_docker.sh gradle jar
+
+      - name: "Prepare Release"
+        run: |
+          RELEASE_VERSION=$(.docker/dev_docker.sh gradle -q getVersion)
+          RELEASE_BRANCH_NAME=$(.docker/dev_docker.sh gradle -q getReleaseBranchName -Dversion="$RELEASE_VERSION")
+          
+          echo "BRANCH_NAME=$RELEASE_BRANCH_NAME" >> $GITHUB_ENV
+          echo "VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+
+      - name: "Create Release"
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: build/libs/*.jar
+          name: Release ${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
+          commit: release/${{ env.BRANCH_NAME }}

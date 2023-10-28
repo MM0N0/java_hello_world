@@ -1,0 +1,37 @@
+# Trigger via gh cli:
+# gh workflow run trigger_minor_release.yml
+name: Trigger Release
+on:
+  workflow_dispatch:
+jobs:
+  trigger_minor_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.WORKFLOW_PAT }}
+      - name: "trigger minor release and set new snapshot version"
+        run: |
+          git config --global user.email "action@github"
+          git config --global user.name "Trigger Release Action"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          
+          SCRIPTS_DIR=".github/workflows/scripts/"
+          RELEASE_VERSION=$(.docker/dev_docker.sh gradle -q getVersionWithoutSnapshot)
+          RELEASE_BRANCH_NAME=$(.docker/dev_docker.sh gradle -q getReleaseBranchName -Dversion="$RELEASE_VERSION")
+          RELEASE_BRANCH="release/$RELEASE_BRANCH_NAME"
+          
+          echo "Release Version: $RELEASE_VERSION"
+          git checkout -b $RELEASE_BRANCH
+          .docker/dev_docker.sh gradle -q setVersion -Dversion="$RELEASE_VERSION"
+          git add -- .
+          git commit -a -m "Release $RELEASE_VERSION"
+          git push origin $RELEASE_BRANCH
+          
+          git checkout dev
+          NEW_VERSION=$(sh $SCRIPTS_DIR/increase_minor_version.sh "$RELEASE_VERSION")-SNAPHOT
+          echo "New Version: $NEW_VERSION"
+          .docker/dev_docker.sh gradle -q setVersion -Dversion="$NEW_VERSION"
+          git add -- .
+          git commit -a -m "New dev Version $NEW_VERSION"
+          git push
