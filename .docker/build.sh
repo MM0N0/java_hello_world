@@ -2,4 +2,4 @@
 SCRIPT_DIR=${0%/*}
 
 # build
-docker load < "$(nix-build --no-out-link "$SCRIPT_DIR/dev_docker.nix")"
+docker build -f "$SCRIPT_DIR/Dockerfile" -t mm0n0/dev_docker_java_hello_world:v1 "$SCRIPT_DIR/.."
