@@ -7,3 +7,8 @@ run
 ``` bash
 .docker/dev_docker.sh java -jar build/libs/HelloWorld-*
 ```
+
+## TODO:
+- centralize project name definition
+  - docker image and container names
+- 
