@@ -16,5 +16,5 @@ jobs:
       - name: Deploy Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: HelloWorld-Snapshot
+          name: java_hello_world-Snapshot
           path: build/libs/*.jar
