@@ -27,4 +27,4 @@ docker run --rm$INTERACTIVE_ARG --net="host" --name="dev_docker_${PROJECT_NAME}_
   bash -c \
     "mkdir -p /tmp &&
     cd /repo &&
-    $SHORTCUT_CMD $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18}"
+    $SHORTCUT_CMD; $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18}"
