@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+SCRIPT_DIR=${0%/*}
+source "$SCRIPT_DIR/.env"
+
+# handle env vars
 if [ -z "$NO_TTY" ]; then
   NO_TTY="0"
 fi
@@ -7,9 +11,9 @@ if [ "$NO_TTY" == "1" ]; then
   INTERACTIVE_ARG=""
 fi
 
-docker run --rm$INTERACTIVE_ARG --net="host" --name=dev_docker_java_hello_world__container \
+docker run --rm$INTERACTIVE_ARG --net="host" --name="dev_docker_${PROJECT_NAME}__container" \
   -v "${PWD}":/repo:rw \
-  "mm0n0/dev_docker_java_hello_world:v1" \
+  "mm0n0/dev_docker_$PROJECT_NAME:v1" \
   \
   bash -c \
     "mkdir -p /tmp &&
