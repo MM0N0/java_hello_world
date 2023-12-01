@@ -2,6 +2,8 @@
 
 ``` bash
 .docker/dev_docker.sh build
+```
+``` bash
 .docker/dev_docker.sh run
 ```
 
