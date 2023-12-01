@@ -9,6 +9,4 @@ run
 ```
 
 ## TODO:
-- centralize project name definition
-  - docker image and container names
 - 
