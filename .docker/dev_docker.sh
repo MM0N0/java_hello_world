@@ -14,10 +14,10 @@ fi
 # shortcut commands
 if [ "$1" == "build" ]; then
   echo "running 'build' command: '$BUILD_CMD'"
-  SHORTCUT_CMD="$BUILD_CMD"
+  SHORTCUT_CMD="$BUILD_CMD; exit 0"
 elif [ "$1" == "run" ]; then
   echo "running 'run' command: '$RUN_CMD'"
-  SHORTCUT_CMD="$RUN_CMD"
+  SHORTCUT_CMD="$RUN_CMD; exit 0"
 fi
 
 docker run --rm$INTERACTIVE_ARG --net="host" --name="dev_docker_${PROJECT_NAME}__container" \
@@ -27,4 +27,4 @@ docker run --rm$INTERACTIVE_ARG --net="host" --name="dev_docker_${PROJECT_NAME}_
   bash -c \
     "mkdir -p /tmp &&
     cd /repo &&
-    $SHORTCUT_CMD; $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18}"
+    $SHORTCUT_CMD $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13} ${14} ${15} ${16} ${17} ${18}"
