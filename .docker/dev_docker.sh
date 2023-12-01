@@ -14,10 +14,10 @@ fi
 # shortcut commands
 if [ "$1" == "build" ]; then
   echo "running 'build' command: '$BUILD_CMD'"
-  SHORTCUT_CMD="$BUILD_CMD; exit 0"
+  SHORTCUT_CMD="$BUILD_CMD; exit 0;"
 elif [ "$1" == "run" ]; then
   echo "running 'run' command: '$RUN_CMD'"
-  SHORTCUT_CMD="$RUN_CMD; exit 0"
+  SHORTCUT_CMD="$RUN_CMD; exit 0;"
 fi
 
 docker run --rm$INTERACTIVE_ARG --net="host" --name="dev_docker_${PROJECT_NAME}__container" \
