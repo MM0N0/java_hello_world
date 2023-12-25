@@ -1,11 +1,51 @@
 # java_hello_world
 
-``` bash
-.docker/dev_docker.sh build
-```
-``` bash
-.docker/dev_docker.sh run
-```
+This is a simple java application.
 
-## TODO:
-- ...
+## Dependencies
+- make
+- bash
+- docker
+
+**if you are using windows, you will have to use wsl**
+
+## Make commands
+
+---
+### test
+test application:
+```bash
+make test
+```
+---
+### build
+build executable fat jar:
+```bash
+make build_jar
+```
+---
+### run
+run:
+```bash
+make run
+```
+---
+### dev_docker
+open and enter a dev_docker container:
+```bash
+make dev_docker
+```
+---
+
+# TODOs
+- foo
+-
+
+## Contribute
+...
+
+## License
+...
+
+## Author Information
+...

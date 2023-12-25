@@ -1,11 +1,13 @@
 FROM nixos/nix
 RUN nix-channel --update
 
-WORKDIR /tmp
-COPY ../.env .env
-RUN nix-env -if /tmp/.env/packages.nix && nix-collect-garbage -d && rm -Rf /root/.cache/nix
+# copy definition of nix packages
+COPY ../.nix_env .nix_env
 
+# install all nix packages from "/tmp/.env/packages.nix"
+# keep this in one RUN, so the layer gets much smaller
+RUN nix-env -if .nix_env/packages.nix && \
+    nix-collect-garbage -d && rm -Rf /root/.cache/nix
 
-ENV ANSIBLE_CONFIG=.docker/ansible.cfg
-ENV ANSIBLE_DEBUG=0
-ENV ANSIBLE_FORCE_COLOR=True
+RUN mkdir /workdir
+WORKDIR /workdir
