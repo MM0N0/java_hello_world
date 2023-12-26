@@ -32,9 +32,10 @@ jobs:
           git push origin $RELEASE_BRANCH
           
           # merge release branch to main
-          git fetch --all
-          git merge --strategy-option theirs --allow-unrelated-histories --no-edit origin/main
-          git push
+          # TODO: fix this
+          # git fetch --all
+          # git merge --strategy-option theirs --allow-unrelated-histories --no-edit origin/main
+          # git push
           
           # change version on dev branch
           git checkout dev
