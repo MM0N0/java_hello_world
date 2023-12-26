@@ -33,7 +33,7 @@ jobs:
 
           # merge release branch to main
           git fetch --all
-          git merge --no-edit main
+          git merge --no-edit origin/main
           git push
           
           # change version on dev branch
