@@ -34,7 +34,7 @@ jobs:
           # merge release branch to main
           git fetch --all
           git checkout main
-          git merge origin/$RELEASE_BRANCH
+          git merge --allow-unrelated-histories origin/$RELEASE_BRANCH
           git push
           
           # change version on dev branch
