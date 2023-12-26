@@ -38,8 +38,8 @@ make dev_docker
 ---
     
 # TODOs
-- rework workflow and release management [ in progress ]
-  - add gh action for hotfix releases!
+- rework workflow and release management
+  - add gh action for hotfix releases! [ in progress ]
   - reset fucked up history and observe closely 
   - do version management in makefile (run docker command to run bash script) ?
 - 
