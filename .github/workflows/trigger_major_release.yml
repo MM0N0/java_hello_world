@@ -32,12 +32,13 @@ jobs:
           git push origin $RELEASE_BRANCH
 
           # merge release branch to main
-          git merge --strategy-option ours --no-edit main
+          git fetch --all
+          git merge --no-edit main
           git push
           
           # change version on dev branch
           git checkout dev
-          NEW_VERSION=$(sh $SCRIPTS_DIR/increase_major_version.sh "$RELEASE_VERSION")-SNAPHOT
+          NEW_VERSION=$(sh $SCRIPTS_DIR/increase_major_version.sh "$RELEASE_VERSION")-SNAPSHOT
           echo "New Version: $NEW_VERSION"
           .docker/dev_docker.sh gradle -q setVersion -Dversion="$NEW_VERSION"
           git add -- .
