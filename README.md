@@ -50,17 +50,20 @@ make dev_docker
 4. create a pull request to dev
 
 ### Trigger Release
-all features merged to dev since the last release will be included in the release
 - trigger gh action "Trigger Minor/Major Release" to trigger a new release
 
+(all features merged to dev since the last release will be included in the new release)
+
 ### Add a hotfix to a release
-1. create branch "hotfix/${FEATURE_NAME}" from the release/XYZ branch you want to fix
+1. create branch "hotfix/${FEATURE_NAME}" from the release/XYZ branch
 2. merge to release/XYZ branch and dev
 3. If the release Branch is finished, merge it to main
 
 ### Trigger patch Release
 all features merged to YYY since the last release will be included in the patch release
 - trigger gh action "Trigger Patch Release" to trigger a new patch release
+
+-- fake_change
 
 ## Contribute
 ...
