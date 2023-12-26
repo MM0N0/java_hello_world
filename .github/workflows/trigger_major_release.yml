@@ -1,6 +1,6 @@
 # Trigger via gh cli:
-# gh workflow run trigger_minor_release.yml
-name: Trigger Minor Release
+# gh workflow run trigger_major_release.yml
+name: Trigger Major Release
 on:
   workflow_dispatch:
 jobs:
@@ -15,7 +15,7 @@ jobs:
       - name: "trigger minor release and set new snapshot version"
         run: |
           git config --global user.email "action@github"
-          git config --global user.name "Trigger Release Minor Action"
+          git config --global user.name "Trigger Release Major Action"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           
           SCRIPTS_DIR=".github/workflows/scripts/"
@@ -30,14 +30,14 @@ jobs:
           git add -- .
           git commit -a -m "Release $RELEASE_VERSION"
           git push origin $RELEASE_BRANCH
-          
+
           # merge release branch to main
           git merge --strategy-option ours --no-edit main
           git push
           
           # change version on dev branch
           git checkout dev
-          NEW_VERSION=$(sh $SCRIPTS_DIR/increase_minor_version.sh "$RELEASE_VERSION")-SNAPHOT
+          NEW_VERSION=$(sh $SCRIPTS_DIR/increase_major_version.sh "$RELEASE_VERSION")-SNAPHOT
           echo "New Version: $NEW_VERSION"
           .docker/dev_docker.sh gradle -q setVersion -Dversion="$NEW_VERSION"
           git add -- .
