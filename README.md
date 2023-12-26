@@ -64,8 +64,6 @@ make dev_docker
 all features merged to YYY since the last release will be included in the patch release
 - trigger gh action "Trigger Patch Release" to trigger a new patch release
 
--- fake_change #2
-
 ## Contribute
 ...
 
