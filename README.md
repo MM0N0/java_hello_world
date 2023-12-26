@@ -39,31 +39,6 @@ make dev_docker
 
 # TODOs
 - rework workflow and release management [ in progress ]
-  - what stages should be there?
-    - dev (developer tests here)
-    - test (qa team will test single features here)
-    - staging (production-like environment)
-    - production
-  - how should the workflow be?
-  - 
-    1. branch from last released branch (feature/XYZ)
-    2. do local development
-    3. PR feature/XYZ to dev
-    4. dev will be released on dev stage on push
-    5. developer test on dev stage (if it fails revert the PR and go back to step c)
-    6. PR feature/XYZ to test
-    7. test will be released on test stage on push
-    8. let qa test feature on test stage (if it fails revert all PRs and go back to step c)
-    9. PR feature/XYZ to staging
-    10. staging will be released on staging stage eventually
-    11. let qa test feature on staging stage (if it fails revert all PRs and go back to step c)
-    12. PR staging to production
-    13. production will be branched to new release/XYZ branch
-    14. release/XYZ will be released on production stage eventually
-  - what branch to use for releases
-  - how to build a hotfix
-  
-  - GitFlow -> Once the hotfix is complete it is merged to both develop and master
 -
 
 ## workflow
