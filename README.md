@@ -39,7 +39,8 @@ make dev_docker
     
 # TODOs
 - rework workflow and release management [ in progress ]
--
+  - do version management in makefile (run docker command to run bash script) ?
+- 
 
 ## workflow
 
@@ -63,7 +64,7 @@ make dev_docker
 all features merged to YYY since the last release will be included in the patch release
 - trigger gh action "Trigger Patch Release" to trigger a new patch release
 
--- fake_change
+-- fake_change #2
 
 ## Contribute
 ...
