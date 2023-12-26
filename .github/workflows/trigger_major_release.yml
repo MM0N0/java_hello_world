@@ -32,6 +32,7 @@ jobs:
           git push origin $RELEASE_BRANCH
 
           # merge release branch to main
+          git fetch --all
           git checkout main
           git merge origin/$RELEASE_BRANCH
           git push
