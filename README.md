@@ -39,7 +39,8 @@ make dev_docker
     
 # TODOs
 - rework workflow and release management [ in progress ]
--
+  - do version management in makefile (run docker command to run bash script) ?
+- 
 
 ## workflow
 
